@@ -20,12 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+#SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = '5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['classmaps.herokuapp.com']
+ALLOWED_HOSTS = ['classmaps.herokuapp.com','localhost']
 
 
 # Application definition
@@ -90,7 +91,14 @@ WSGI_APPLICATION = 'classmaps.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {'default': dj_database_url.config(conn_max_age=500)}
+#DATABASES = {'default': dj_database_url.config(conn_max_age=500)}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ps_classes',
+    }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -137,3 +145,6 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 STATICFILES_DIRS = [
      os.path.join(BASE_DIR, 'classes/static'),
 ]
+
+#import django_heroku
+#django_heroku.settings(locals())
